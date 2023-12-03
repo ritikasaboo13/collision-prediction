@@ -6,6 +6,13 @@ dataset_parameters = {
         'total_length': 16,
         'metrics': ['mse', 'mae', 'ssim', 'psnr', 'lpips'],
     },
+    'movingphy': {
+        'in_shape': [11, 3, 160, 240],
+        'pre_seq_length': 11,
+        'aft_seq_length': 11,
+        'total_length': 22,
+        'metrics': ['mse', 'mae', 'ssim', 'psnr', 'lpips'],
+    },
     'mfmnist': {
         'in_shape': [10, 1, 64, 64],
         'pre_seq_length': 10,
