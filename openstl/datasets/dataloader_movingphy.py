@@ -103,4 +103,4 @@ def load_data(batch_size, val_batch_size, data_root, num_workers=4, data_name='m
     
     print("Dataloader shapes: ", dataloader_train.shape, dataloader_vali.shape, dataloader_test.shape)
 
-    return dataloader_train, dataloader_vali, dataloader_test
+    return dataloader_train, dataloader_vali, None
