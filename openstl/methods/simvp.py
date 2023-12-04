@@ -28,16 +28,17 @@ class SimVP(Base_method):
 
     def _predict(self, batch_x, batch_y=None, **kwargs):
         """Forward the model"""
+        #print("Batch_x shape:", batch_x.shape)
         if self.args.aft_seq_length == self.args.pre_seq_length:
-            pred_y = self.model(batch_x)
+             pred_y = self.model(batch_x)
         elif self.args.aft_seq_length < self.args.pre_seq_length:
             pred_y = self.model(batch_x)
             pred_y = pred_y[:, :self.args.aft_seq_length]
+        #print("Pred_y shape:", pred_y.shape)
         elif self.args.aft_seq_length > self.args.pre_seq_length:
             pred_y = []
             d = self.args.aft_seq_length // self.args.pre_seq_length
             m = self.args.aft_seq_length % self.args.pre_seq_length
-            
             cur_seq = batch_x.clone()
             for _ in range(d):
                 cur_seq = self.model(cur_seq)
@@ -48,6 +49,7 @@ class SimVP(Base_method):
                 pred_y.append(cur_seq[:, :m])
             
             pred_y = torch.cat(pred_y, dim=1)
+            #print("Pred_y shape after torch.cat along dim=1:", pred_y.shape)
         return pred_y
 
     def train_one_epoch(self, runner, train_loader, epoch, num_updates, eta=None, **kwargs):
@@ -63,13 +65,15 @@ class SimVP(Base_method):
         for batch_x, batch_y in train_pbar:
             data_time_m.update(time.time() - end)
             self.model_optim.zero_grad()
-
+            #print("Batch x shape:", batch_x.shape)
+            #print("Batch y shape:", batch_y.shape)
             if not self.args.use_prefetcher:
                 batch_x, batch_y = batch_x.to(self.device), batch_y.to(self.device)
             runner.call_hook('before_train_iter')
-
+            
             with self.amp_autocast():
                 pred_y = self._predict(batch_x)
+               # print("pred_y shape before loss:", pred_y.shape)
                 loss = self.criterion(pred_y, batch_y)
 
             if not self.dist:
