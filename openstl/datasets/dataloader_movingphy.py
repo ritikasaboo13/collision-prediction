@@ -75,10 +75,12 @@ class MovingPhysics(Dataset):
 
       for f in range(self.total_frames):
         frame = Image.open(os.path.join(video, "image_"+str(f)+".png"))
+       # print("======================= RAW IMAGE ========================", frame)
         transform = transforms.ToTensor()
         frame = transform(frame)
-       # print(frame)
-        frame = frame/255
+        #print("====================== TENSOR IMAGE ======================", frame)
+        #normalized_frame = frame / 255.0
+        #print("==================== NORMALIZED IMAGE ==================", normalized_frame)
         frames.append(frame)
         #print(frame)
 
@@ -104,20 +106,17 @@ def load_data(batch_size, val_batch_size, data_root, num_workers=4, data_name='m
                                     batch_size=batch_size,
                                     shuffle=False, is_training=False,
                                     pin_memory=True, drop_last=True,
-                                    num_workers=num_workers, distributed=distributed
-                                     )
+                                    num_workers=num_workers, distributed=distributed, use_prefetcher=use_prefetcher)
     dataloader_vali = create_loader(val_set,
                                     batch_size=val_batch_size,
                                     shuffle=False, is_training=False,
                                     pin_memory=True, drop_last=True,
-                                    num_workers=num_workers, distributed=distributed
-                                    )
+                                    num_workers=num_workers, distributed=distributed, use_prefetcher=use_prefetcher)
     dataloader_test = create_loader(val_set,
                                     batch_size=val_batch_size,
                                     shuffle=False, is_training=False,
                                     pin_memory=True, drop_last=True,
-                                    num_workers=num_workers, distributed=distributed
-                                    )
+                                    num_workers=num_workers, distributed=distributed,use_prefetcher=use_prefetcher)
     
    # print("Dataloader shapes: ", dataloader_train.shape, dataloader_vali.shape, dataloader_test.shape)
 
