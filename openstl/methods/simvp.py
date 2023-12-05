@@ -47,9 +47,9 @@ class SimVP(Base_method):
             if m != 0:
                 cur_seq = self.model(cur_seq)
                 pred_y.append(cur_seq[:, :m])
-            
+            print("Pred_y shape before concatenation: ",pred_y) 
             pred_y = torch.cat(pred_y, dim=1)
-            #print("Pred_y shape after torch.cat along dim=1:", pred_y.shape)
+            print("Pred_y shape after torch.cat along dim=1: ", pred_y.shape)
         return pred_y
 
     def train_one_epoch(self, runner, train_loader, epoch, num_updates, eta=None, **kwargs):
@@ -73,8 +73,8 @@ class SimVP(Base_method):
             
             with self.amp_autocast():
                 pred_y = self._predict(batch_x)
-               # print("pred_y shape before loss:", pred_y.shape)
                 loss = self.criterion(pred_y, batch_y)
+                print("Loss: ", loss.item())
 
             if not self.dist:
                 losses_m.update(loss.item(), batch_x.size(0))
