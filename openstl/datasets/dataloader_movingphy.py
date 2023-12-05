@@ -94,7 +94,7 @@ def load_data(batch_size, val_batch_size, data_root, num_workers=4, data_name='m
               pre_seq_length=10, aft_seq_length=10, in_shape=[10, 1, 64, 64],
               distributed=False, use_augment=False, use_prefetcher=False, drop_last=False):
 
-    image_size = in_shape[-1] if in_shape is not None else 64
+   # image_size = in_shape[-1] if in_shape is not None else 64
     train_set = MovingPhysics(root=data_root, is_train=True, data_name=data_name, 
                               pre_frame_length=pre_seq_length, aft_frame_length=aft_seq_length, image_height=in_shape[-2], 
                               image_width=in_shape[-1], transform=None, use_augment=False, normalize=True)
@@ -102,22 +102,29 @@ def load_data(batch_size, val_batch_size, data_root, num_workers=4, data_name='m
                               pre_frame_length=pre_seq_length, aft_frame_length=aft_seq_length, image_height=in_shape[-2], 
                               image_width=in_shape[-1], transform=None, use_augment=False, normalize=True)
 
-    dataloader_train = create_loader(train_set,
+    
+    train_size = int(0.9*len(train_set))
+    val_size = int(0.1*len(train_set))
+
+    train_data, val_data = torch.utils.data.random_split(train_set, [train_size, val_size], generator=torch.Generator().manual_seed(2021))
+
+
+    dataloader_train = create_loader(train_data,
                                     batch_size=batch_size,
-                                    shuffle=False, is_training=False,
+                                    shuffle=True, is_training=True,
                                     pin_memory=True, drop_last=True,
                                     num_workers=num_workers, distributed=distributed, use_prefetcher=use_prefetcher)
-    dataloader_vali = create_loader(val_set,
+    dataloader_vali = create_loader(val_data,
                                     batch_size=val_batch_size,
                                     shuffle=False, is_training=False,
-                                    pin_memory=True, drop_last=True,
+                                    pin_memory=True, drop_last=drop_last,
                                     num_workers=num_workers, distributed=distributed, use_prefetcher=use_prefetcher)
     dataloader_test = create_loader(val_set,
                                     batch_size=val_batch_size,
                                     shuffle=False, is_training=False,
-                                    pin_memory=True, drop_last=True,
+                                    pin_memory=True, drop_last=drop_last,
                                     num_workers=num_workers, distributed=distributed,use_prefetcher=use_prefetcher)
     
    # print("Dataloader shapes: ", dataloader_train.shape, dataloader_vali.shape, dataloader_test.shape)
 
-    return dataloader_train, dataloader_vali, None
+    return dataloader_train, dataloader_vali, dataloader_test
