@@ -12,6 +12,7 @@ MASTER_ADDR=${MASTER_ADDR:-"127.0.0.1"}
 WORK_DIR=$(echo ${CFG%.*} | sed -e "s/configs/work_dirs/g")/
 
 $PYTHON -m torch.distributed.launch \
+    --use-env \
     --nnodes=$NNODES \
     --node_rank=$NODE_RANK \
     --master_addr=$MASTER_ADDR \

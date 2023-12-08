@@ -18,6 +18,8 @@ if __name__ == '__main__':
     args = create_parser().parse_args()
     config = args.__dict__
 
+    print("Config:", args.__dict__)
+
     if has_nni:
         tuner_params = nni.get_next_parameter()
         config.update(tuner_params)
@@ -25,9 +27,13 @@ if __name__ == '__main__':
     assert args.config_file is not None, "Config file is required for testing"
     config = update_config(config, load_config(args.config_file),
                            exclude_keys=['method', 'batch_size', 'val_batch_size'])
+    print("Config:", args.__dict__)
     default_values = default_parser()
+    print("Config:", args.__dict__)
+
     for attribute in default_values.keys():
         if config[attribute] is None:
+            print("attribute not available:", attribute)
             config[attribute] = default_values[attribute]
     if not config['inference'] and not config['test']:
         config['test'] = True
@@ -36,6 +42,7 @@ if __name__ == '__main__':
     setup_multi_processes(config)
 
     print('>'*35 + ' testing  ' + '<'*35)
+    print("Configuration before initializing BaseExp: ", args.__dict__) 
     exp = BaseExperiment(args)
     rank, _ = get_dist_info()
 

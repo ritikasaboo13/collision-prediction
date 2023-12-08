@@ -35,32 +35,21 @@ class MovingPhysics(Dataset):
         if self.is_train:
           self.train_fdr_path = os.path.join(root, "train")
           self.unlabeled_fdr_path = os.path.join(root, "unlabeled")
-         # print("Train folder path: ", self.train_fdr_path)
-         # print("Unlabeled folder path: ", self.unlabeled_fdr_path)
           train_videos = os.listdir(self.train_fdr_path)
           unlabeled_videos = os.listdir(self.unlabeled_fdr_path)
           for v in train_videos:
               self.videos.append(os.path.join(self.train_fdr_path, v))
           for v in unlabeled_videos:
             self.videos.append(os.path.join(self.unlabeled_fdr_path, v))
-
-         # print("Train video paths:", self.train_videos)
-         #  print("Unlabeled video paths:", self.unlabeled_videos)
-         #  self.videos = self.train_videos + self.unlabeled_videos
         else:
           self.val_fdr_path = os.path.join(root, "val")
-          #print("Val folder path: ", self.val_fdr_path)
-          #self.test_fdr_path = self.val_fdr_path
           val_videos = os.listdir(self.val_fdr_path)
           for v in val_videos:
             self.videos.append(os.path.join(self.val_fdr_path, v))
-          #print("Val video paths:", self.val_videos
                 
                     
-          #self.videos = self.val_videos
 
         self.videos.sort() # do I need to sort it? 
-       # print(self.videos[:11])
         self.mean = 0
         self.std = 1
 
@@ -75,26 +64,17 @@ class MovingPhysics(Dataset):
 
       for f in range(self.total_frames):
         frame = Image.open(os.path.join(video, "image_"+str(f)+".png"))
-       # print("======================= RAW IMAGE ========================", frame)
         transform = transforms.ToTensor()
         frame = transform(frame)
-        #print("====================== TENSOR IMAGE ======================", frame)
-        #normalized_frame = frame / 255.0
-        #print("==================== NORMALIZED IMAGE ==================", normalized_frame)
         frames.append(frame)
-        #print(frame)
 
       frames_ = torch.stack(frames)
-      #print(frames_.shape)
-     # print(frames_[:self.pre_frame_length, ...].shape)
-      #print(frames_[self.pre_frame_length:, ...].shape)
       return frames_[:self.pre_frame_length, ...], frames_[self.pre_frame_length:, ...]
 
 def load_data(batch_size, val_batch_size, data_root, num_workers=4, data_name='mnist',
               pre_seq_length=10, aft_seq_length=10, in_shape=[10, 1, 64, 64],
               distributed=False, use_augment=False, use_prefetcher=False, drop_last=False):
 
-   # image_size = in_shape[-1] if in_shape is not None else 64
     train_set = MovingPhysics(root=data_root, is_train=True, data_name=data_name, 
                               pre_frame_length=pre_seq_length, aft_frame_length=aft_seq_length, image_height=in_shape[-2], 
                               image_width=in_shape[-1], transform=None, use_augment=False, normalize=True)
@@ -104,7 +84,7 @@ def load_data(batch_size, val_batch_size, data_root, num_workers=4, data_name='m
 
     
     train_size = int(0.9*len(train_set))
-    val_size = int(0.1*len(train_set))
+    val_size = len(train_set)-train_size
 
     train_data, val_data = torch.utils.data.random_split(train_set, [train_size, val_size], generator=torch.Generator().manual_seed(2021))
 
@@ -125,6 +105,5 @@ def load_data(batch_size, val_batch_size, data_root, num_workers=4, data_name='m
                                     pin_memory=True, drop_last=drop_last,
                                     num_workers=num_workers, distributed=distributed,use_prefetcher=use_prefetcher)
     
-   # print("Dataloader shapes: ", dataloader_train.shape, dataloader_vali.shape, dataloader_test.shape)
 
     return dataloader_train, dataloader_vali, dataloader_test

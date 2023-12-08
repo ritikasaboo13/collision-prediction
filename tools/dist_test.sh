@@ -13,6 +13,7 @@ MASTER_ADDR=${MASTER_ADDR:-"127.0.0.1"}
 
 # test
 python -m torch.distributed.launch \
+    --use-env \
     --nnodes=$NNODES \
     --node_rank=$NODE_RANK \
     --master_addr=$MASTER_ADDR \

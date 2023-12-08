@@ -11,7 +11,7 @@ dataset_parameters = {
         'pre_seq_length': 11,
         'aft_seq_length': 11,
         'total_length': 22,
-        'metrics': ['mse', 'mae', 'ssim', 'psnr', 'lpips'],
+        'metrics': ['mse', 'mae', 'ssim'],
     },
     'mfmnist': {
         'in_shape': [10, 1, 64, 64],

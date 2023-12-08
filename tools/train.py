@@ -49,6 +49,7 @@ if __name__ == '__main__':
     if rank == 0:
         print('>'*35 + ' testing  ' + '<'*35)
     mse = exp.test()
-
+    print("In experiment, test complete")
     if rank == 0 and has_nni:
+        print("Final mse:", mse)
         nni.report_final_result(mse)

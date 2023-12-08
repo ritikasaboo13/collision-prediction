@@ -74,8 +74,8 @@ class SimVP(Base_method):
             with self.amp_autocast():
                 pred_y = self._predict(batch_x)
                 loss = self.criterion(pred_y, batch_y)
-                print("Loss: ", loss.item())
-
+               # print("Loss: ", loss.item())
+                
             if not self.dist:
                 losses_m.update(loss.item(), batch_x.size(0))
 

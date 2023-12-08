@@ -102,6 +102,7 @@ class Base_method(object):
         Returns:
             results_all (dict(np.ndarray)): The concatenated outputs.
         """
+        print("Entered dist_forward_collections")
         # preparation
         results = []
         length = len(data_loader.dataset) if length is None else length
@@ -120,8 +121,9 @@ class Base_method(object):
                 results.append(dict(zip(['inputs', 'preds', 'trues'],
                                         [batch_x.cpu().numpy(), pred_y.cpu().numpy(), batch_y.cpu().numpy()])))
             else:  # return metrics
+                ### changed mean and std to 0, 1
                 eval_res, _ = metric(pred_y.cpu().numpy(), batch_y.cpu().numpy(),
-                                     data_loader.dataset.mean, data_loader.dataset.std,
+                                     0, 1,
                                      metrics=self.metric_list, spatial_norm=self.spatial_norm, return_log=False)
                 eval_res['loss'] = self.criterion(pred_y, batch_y).cpu().numpy()
                 for k in eval_res.keys():
@@ -154,6 +156,8 @@ class Base_method(object):
         Returns:
             results_all (dict(np.ndarray)): The concatenated outputs.
         """
+
+        print("Entered non_dist_forward_collection")
         # preparation
         results = []
         prog_bar = ProgressBar(len(data_loader))
@@ -166,11 +170,13 @@ class Base_method(object):
                 pred_y = self._predict(batch_x, batch_y)
 
             if gather_data:  # return raw datas
+               # print("Zipping data:")
                 results.append(dict(zip(['inputs', 'preds', 'trues'],
                                         [batch_x.cpu().numpy(), pred_y.cpu().numpy(), batch_y.cpu().numpy()])))
             else:  # return metrics
+                ### changed the mean and std here 
                 eval_res, _ = metric(pred_y.cpu().numpy(), batch_y.cpu().numpy(),
-                                     data_loader.dataset.mean, data_loader.dataset.std,
+                                     0, 1,
                                      metrics=self.metric_list, spatial_norm=self.spatial_norm, return_log=False)
                 eval_res['loss'] = self.criterion(pred_y, batch_y).cpu().numpy()
                 for k in eval_res.keys():
@@ -180,11 +186,17 @@ class Base_method(object):
             prog_bar.update()
             if self.args.empty_cache:
                 torch.cuda.empty_cache()
+        
+        print("Results:", len(results))
 
         # post gather tensors
         results_all = {}
         for k in results[0].keys():
+            print("Gathering results", k)
             results_all[k] = np.concatenate([batch[k] for batch in results], axis=0)
+        
+        print("Reached the end of non_dist_forward_collection")
+        
         return results_all
 
     def vali_one_epoch(self, runner, vali_loader, **kwargs):

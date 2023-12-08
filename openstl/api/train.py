@@ -340,13 +340,18 @@ class BaseExperiment(object):
         return results['loss'].mean()
 
     def test(self):
+
+        print("Entering exp.test()")
+        print("Is --test set?", self.args.test)
         """A testing loop of STL methods"""
         if self.args.test:
             best_model_path = osp.join(self.path, 'checkpoint.pth')
             self._load_from_state_dict(torch.load(best_model_path))
+            print("Loading checkpoint weights and baises")
 
         self.call_hook('before_val_epoch')
         results = self.method.test_one_epoch(self, self.test_loader)
+        print("Tested one epoch of self.test_loader")
         self.call_hook('after_val_epoch')
 
         if 'weather' in self.args.dataname:
@@ -359,12 +364,15 @@ class BaseExperiment(object):
                                     metrics=metric_list, channel_names=channel_names, spatial_norm=spatial_norm)
         results['metrics'] = np.array([eval_res['mae'], eval_res['mse']])
 
+        print("Here are my results", results)
+
         if self._rank == 0:
             print_log(eval_log)
             folder_path = osp.join(self.path, 'saved')
             check_dir(folder_path)
 
             for np_data in ['metrics', 'inputs', 'trues', 'preds']:
+                print("Copying data into folder path saved!")
                 np.save(osp.join(folder_path, np_data + '.npy'), results[np_data])
 
         return eval_res['mse']
@@ -383,5 +391,5 @@ class BaseExperiment(object):
             check_dir(folder_path)
             for np_data in ['inputs', 'trues', 'preds']:
                 np.save(osp.join(folder_path, np_data + '.npy'), results[np_data])
-
+                print("Inference data saved to folder")
         return None
