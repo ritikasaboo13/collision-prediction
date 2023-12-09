@@ -1,5 +1,8 @@
 from typing import Dict, List, Union
 import numpy as np
+import psutil
+import os
+import os.path as osp
 
 import torch
 from torch.nn.parallel import DistributedDataParallel as NativeDDP
@@ -170,9 +173,8 @@ class Base_method(object):
                 pred_y = self._predict(batch_x, batch_y)
 
             if gather_data:  # return raw datas
-               # print("Zipping data:")
-                results.append(dict(zip(['inputs', 'preds', 'trues'],
-                                        [batch_x.cpu().numpy(), pred_y.cpu().numpy(), batch_y.cpu().numpy()])))
+                results.append(dict(zip(['inputs', 'preds'],
+                                        [batch_x.cpu().numpy(), pred_y.cpu().numpy()])))
             else:  # return metrics
                 ### changed the mean and std here 
                 eval_res, _ = metric(pred_y.cpu().numpy(), batch_y.cpu().numpy(),
@@ -188,13 +190,17 @@ class Base_method(object):
                 torch.cuda.empty_cache()
         
         print("Results:", len(results))
+        print("Memory usage before the problematic section:", psutil.virtual_memory())
+        print("Keys to loop over: ", results[0].keys())
 
         # post gather tensors
         results_all = {}
         for k in results[0].keys():
             print("Gathering results", k)
             results_all[k] = np.concatenate([batch[k] for batch in results], axis=0)
-        
+            print("Gathering results complete", k)
+            print("Memory usage after the problematic section:", psutil.virtual_memory())
+
         print("Reached the end of non_dist_forward_collection")
         
         return results_all

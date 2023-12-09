@@ -8,10 +8,6 @@
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 
-##SBATCH --partition=n1s16-v100-2
-##SBATCH --gres=gpu:2
-##SBATCH --cpus-per-task=16
-
 ##SBATCH --partition=n1c24m128-v100-4
 ##SBATCH --gres=gpu:4
 ##SBATCH --cpus-per-task=24
@@ -36,11 +32,11 @@ singularity exec --nv \
 /bin/bash -c \
 "source /ext3/env.sh;
 export PYTHONPATH=\${PYTHONPATH}:/scratch/rss9311/pytorch-env-dir/simvpOpenStl; 
-python tools/train.py \
+python tools/test.py \
 -c /scratch/rss9311/pytorch-env-dir/simvpOpenStl/configs/movingphy/simvp/SimVP_gSTA.py \
 --dataname 'movingphy' \
 --data_root /scratch/rss9311/squashfs-root/dataset \
 -b 4 \
 -vb 4 \
---epoch 20 \
---ex_name exp_1208_6_45pm"
+--epoch 1 \
+--ex_name exp_0612_8_30am --test"
