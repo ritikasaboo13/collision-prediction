@@ -121,14 +121,15 @@ class Base_method(object):
                 pred_y = self._predict(batch_x, batch_y)
 
             if gather_data:  # return raw datas
-                results.append(dict(zip(['inputs', 'preds', 'trues'],
-                                        [batch_x.cpu().numpy(), pred_y.cpu().numpy(), batch_y.cpu().numpy()])))
+                results.append(dict(zip(['preds'],
+                                        [pred_y.cpu().numpy()])))
             else:  # return metrics
                 ### changed mean and std to 0, 1
                 eval_res, _ = metric(pred_y.cpu().numpy(), batch_y.cpu().numpy(),
                                      0, 1,
                                      metrics=self.metric_list, spatial_norm=self.spatial_norm, return_log=False)
                 eval_res['loss'] = self.criterion(pred_y, batch_y).cpu().numpy()
+                
                 for k in eval_res.keys():
                     eval_res[k] = eval_res[k].reshape(1)
                 results.append(eval_res)
@@ -173,8 +174,8 @@ class Base_method(object):
                 pred_y = self._predict(batch_x, batch_y)
 
             if gather_data:  # return raw datas
-                results.append(dict(zip(['inputs', 'preds'],
-                                        [batch_x.cpu().numpy(), pred_y.cpu().numpy()])))
+                results.append(dict(zip(['preds'],
+                                        [pred_y.cpu().numpy()])))
             else:  # return metrics
                 ### changed the mean and std here 
                 eval_res, _ = metric(pred_y.cpu().numpy(), batch_y.cpu().numpy(),

@@ -359,23 +359,23 @@ class BaseExperiment(object):
             channel_names = self.test_loader.dataset.data_name if 'mv' in self.args.dataname else None
         else:
             metric_list, spatial_norm, channel_names = self.args.metrics, False, None
-        eval_res, eval_log = metric(results['preds'], results['trues'],
-                                    self.test_loader.dataset.mean, self.test_loader.dataset.std,
-                                    metrics=metric_list, channel_names=channel_names, spatial_norm=spatial_norm)
-        results['metrics'] = np.array([eval_res['mae'], eval_res['mse']])
+       # eval_res, eval_log = metric(results['preds'], results['trues'],
+        #                            self.test_loader.dataset.mean, self.test_loader.dataset.std,
+         #                           metrics=metric_list, channel_names=channel_names, spatial_norm=spatial_norm)
+       # results['metrics'] = np.array([eval_res['mae'], eval_res['mse']])
 
         print("Here are my results", results)
 
         if self._rank == 0:
-            print_log(eval_log)
+            #print_log(eval_log)
             folder_path = osp.join(self.path, 'saved')
             check_dir(folder_path)
 
-            for np_data in ['metrics', 'inputs', 'trues', 'preds']:
+            for np_data in ['preds']:
                 print("Copying data into folder path saved!")
                 np.save(osp.join(folder_path, np_data + '.npy'), results[np_data])
 
-        return eval_res['mse']
+        return None
 
     def inference(self):
         """A inference loop of STL methods"""

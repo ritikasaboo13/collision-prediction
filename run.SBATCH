@@ -28,7 +28,6 @@
 mkdir /tmp/$USER
 export SINGULARITY_CACHEDIR=/tmp/$USER
 
-
 singularity exec --nv \
 --bind /scratch/rss9311 \
 --overlay ../overlay-25GB-500K-copy.ext3:ro \
@@ -42,5 +41,5 @@ python tools/train.py \
 --data_root /scratch/rss9311/squashfs-root/dataset \
 -b 4 \
 -vb 4 \
---epoch 20 \
---ex_name exp_1208_6_45pm"
+--epoch 30 \
+--ex_name exp_0612_8_30am"

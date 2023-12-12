@@ -13,6 +13,7 @@ from .predrnnv2 import PredRNNv2
 from .simvp import SimVP
 from .tau import TAU
 from .dmvfn import DMVFN
+from .simvpsegment import SimVPSegment
 
 method_maps = {
     'convlstm': ConvLSTM,
@@ -27,11 +28,12 @@ method_maps = {
     'predrnnv2': PredRNNv2,
     'simvp': SimVP,
     'tau': TAU,
-    'dmvfn': DMVFN
+    'dmvfn': DMVFN,
+    'simvpsegment': SimVPSegment
 }
 
 __all__ = [
     'method_maps', 'ConvLSTM', 'CrevNet', 'E3DLSTM', 'MAU', 'MIM',
     'PredRNN', 'PredRNNpp', 'PredRNNv2', 'PhyDNet', 'PredNet', 'SimVP', 
-    'TAU'
+    'TAU', 'SimVPSegment'
 ]

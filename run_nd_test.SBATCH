@@ -32,9 +32,10 @@ singularity exec --nv \
 /bin/bash -c \
 "source /ext3/env.sh;
 export PYTHONPATH=\${PYTHONPATH}:/scratch/rss9311/pytorch-env-dir/simvpOpenStl; 
-bash tools/dist_test.sh \
-/scratch/rss9311/pytorch-env-dir/simvpOpenStl/configs/movingphy/simvp/SimVP_gSTA.py \
-1 \
-work_dirs/train_20231211_003804.log \
+python tools/test.py \
+-c /scratch/rss9311/pytorch-env-dir/simvpOpenStl/configs/movingphy/simvp/SimVP_gSTA.py \
 --dataname 'movingphy' \
---data_root /scratch/rss9311/squashfs-root/dataset -vb 4"
+--data_root /scratch/rss9311/squashfs-root/dataset \
+-b 4 \
+-vb 4 \
+--ex_name exp_0612_8_30am --test"
