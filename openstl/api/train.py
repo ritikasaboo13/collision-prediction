@@ -243,6 +243,7 @@ class BaseExperiment(object):
                 self.method.model.load_state_dict(state_dict)
         else:
             self.method.model.load_state_dict(state_dict)
+        print("Load from state_dict")
 
     def display_method_info(self):
         """Plot the basic infomation of supported methods"""
@@ -346,6 +347,7 @@ class BaseExperiment(object):
         """A testing loop of STL methods"""
         if self.args.test:
             best_model_path = osp.join(self.path, 'checkpoint.pth')
+            print("Best model path is: ", best_model_path)
             self._load_from_state_dict(torch.load(best_model_path))
             print("Loading checkpoint weights and baises")
 

@@ -47,7 +47,7 @@ class MovingPhysics(Dataset):
           for v in val_videos:
             self.videos.append(os.path.join(self.val_fdr_path, v))
 
-        self.videos.sort() # do I need to sort it? 
+        self.videos.sort(key=lambda x: int(x.strip('video_'))) 
         self.mean = 0
         self.std = 1
 
@@ -68,25 +68,12 @@ class MovingPhysics(Dataset):
 
       mask_path = os.path.join(video, "mask.npy")
       masks = np.load(mask_path)
-      masks_ = torch.tensor(masks[-11:], dtype=torch.int64) 
+      masks_ = torch.tensor(masks[-11:]) 
       frames_ = torch.stack(frames)
-      
 
-      T, H, W = masks_.shape  # Extract dimensions
-      num_classes = 49  # Total number of classes
-      # Reshape batch_y for one-hot encoding: shape (N*T*H*W)
-      masks_flat = masks_.view(-1)
-
-# One-hot encode
-      masks_one_hot = F.one_hot(masks_flat, num_classes=49)  # Shape: [N*T*H*W, 49]
-
-# Reshape back to the desired shape
-      masks_one_hot = masks_one_hot.view(T, H, W, 49)  # Shape: [N, T, H, W, 49]
-
-# Transpose to bring the class dimension to the third position
-      masks_one_hot = masks_one_hot.permute(0, 3, 1, 2)  # Final shape: [N, T, 49, H, W]
-
-      return frames_[:self.pre_frame_length, ...], masks_one_hot
+     ### print("Batch sample mask dtype and shape: ", masks_.dtype, masks_.shape)
+    
+      return frames_[:self.pre_frame_length, ...], masks_
 
 def load_data(batch_size, val_batch_size, data_root, num_workers=4, data_name='mnist',
               pre_seq_length=10, aft_seq_length=10, in_shape=[10, 1, 64, 64],

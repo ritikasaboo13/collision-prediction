@@ -47,9 +47,7 @@ class MovingPhysics(Dataset):
           for v in val_videos:
             self.videos.append(os.path.join(self.val_fdr_path, v))
                 
-                    
-
-        self.videos.sort() # do I need to sort it? 
+        self.videos.sort(key=lambda x: int(x.strip('video_')))
         self.mean = 0
         self.std = 1
 

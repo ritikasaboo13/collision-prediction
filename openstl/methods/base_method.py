@@ -54,8 +54,11 @@ class Base_method(object):
         # setup metrics
         if 'weather' in self.args.dataname:
             self.metric_list, self.spatial_norm = ['mse', 'rmse', 'mae'], True
+        elif 'movingphy_segment' in self.args.dataname:
+            self.metric_list, self.spatial_norm = [], True
         else:
             self.metric_list, self.spatial_norm = ['mse', 'mae'], False
+
 
     def _build_model(self, **kwargs):
         raise NotImplementedError
@@ -105,7 +108,6 @@ class Base_method(object):
         Returns:
             results_all (dict(np.ndarray)): The concatenated outputs.
         """
-        print("Entered dist_forward_collections")
         # preparation
         results = []
         length = len(data_loader.dataset) if length is None else length
@@ -119,7 +121,6 @@ class Base_method(object):
             with torch.no_grad():
                 batch_x, batch_y = batch_x.to(self.device), batch_y.to(self.device)
                 pred_y = self._predict(batch_x, batch_y)
-
             if gather_data:  # return raw datas
                 results.append(dict(zip(['preds'],
                                         [pred_y.cpu().numpy()])))
@@ -128,7 +129,7 @@ class Base_method(object):
                 eval_res, _ = metric(pred_y.cpu().numpy(), batch_y.cpu().numpy(),
                                      0, 1,
                                      metrics=self.metric_list, spatial_norm=self.spatial_norm, return_log=False)
-                eval_res['loss'] = self.criterion(pred_y, batch_y).cpu().numpy()
+                eval_res['loss'] = self.criterion(pred_y.permute(0, 2, 1, 3,4), batch_y.to(torch.long)).cpu().numpy()
                 
                 for k in eval_res.keys():
                     eval_res[k] = eval_res[k].reshape(1)
@@ -140,6 +141,9 @@ class Base_method(object):
                 prog_bar.update()
 
         # post gather tensors
+
+        print("Gathering all tensors")
+
         results_all = {}
         for k in results[0].keys():
             results_cat = np.concatenate([batch[k] for batch in results], axis=0)
@@ -161,7 +165,6 @@ class Base_method(object):
             results_all (dict(np.ndarray)): The concatenated outputs.
         """
 
-        print("Entered non_dist_forward_collection")
         # preparation
         results = []
         prog_bar = ProgressBar(len(data_loader))
@@ -172,7 +175,6 @@ class Base_method(object):
             with torch.no_grad():
                 batch_x, batch_y = batch_x.to(self.device), batch_y.to(self.device)
                 pred_y = self._predict(batch_x, batch_y)
-
             if gather_data:  # return raw datas
                 results.append(dict(zip(['preds'],
                                         [pred_y.cpu().numpy()])))
@@ -181,7 +183,7 @@ class Base_method(object):
                 eval_res, _ = metric(pred_y.cpu().numpy(), batch_y.cpu().numpy(),
                                      0, 1,
                                      metrics=self.metric_list, spatial_norm=self.spatial_norm, return_log=False)
-                eval_res['loss'] = self.criterion(pred_y, batch_y).cpu().numpy()
+                eval_res['loss'] = self.criterion(pred_y.permute(0, 2, 1, 3,4), batch_y.to(torch.long)).cpu().numpy()
                 for k in eval_res.keys():
                     eval_res[k] = eval_res[k].reshape(1)
                 results.append(eval_res)
@@ -190,19 +192,12 @@ class Base_method(object):
             if self.args.empty_cache:
                 torch.cuda.empty_cache()
         
-        print("Results:", len(results))
-        print("Memory usage before the problematic section:", psutil.virtual_memory())
-        print("Keys to loop over: ", results[0].keys())
-
         # post gather tensors
+        print("Gathering tensors")
         results_all = {}
         for k in results[0].keys():
-            print("Gathering results", k)
             results_all[k] = np.concatenate([batch[k] for batch in results], axis=0)
-            print("Gathering results complete", k)
-            print("Memory usage after the problematic section:", psutil.virtual_memory())
 
-        print("Reached the end of non_dist_forward_collection")
         
         return results_all
 
@@ -247,7 +242,7 @@ class Base_method(object):
             results = self._dist_forward_collect(test_loader, gather_data=True)
         else:
             results = self._nondist_forward_collect(test_loader, gather_data=True)
-
+        print("end of test one epoch")
         return results
 
     def current_lr(self) -> Union[List[float], Dict[str, List[float]]]:
@@ -273,7 +268,7 @@ class Base_method(object):
     def clip_grads(self, params, norm_type: float = 2.0):
         """ Dispatch to gradient clipping method
 
-        Args:
+        Args:`
             parameters (Iterable): model parameters to clip
             value (float): clipping value/factor/norm, mode dependant
             mode (str): clipping mode, one of 'norm', 'value', 'agc'
