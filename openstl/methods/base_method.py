@@ -188,8 +188,13 @@ class Base_method(object):
                 eval_res, _ = metric(pred_y.cpu().numpy(), batch_y.cpu().numpy(),
                                      0, 1,
                                      metrics=self.metric_list, spatial_norm=self.spatial_norm, return_log=False)
-                eval_res['loss'] = self.criterion(pred_y.permute(0, 2, 1, 3,4), batch_y.to(torch.long)).cpu().numpy()
+                y_pred = pred_y.view(-1, pred_y.shape[-3], pred_y.shape[-2], pred_y.shape[-1])
+                print("Reshaped pred_y for val set:", y_pred.shape)
+                y_batch = batch_y.view(-1, batch_y.shape[-2], batch_y.shape[-1])
+                print("Reshaped batch_y for val set:", y_batch.shape)
+                eval_res['loss'] = self.criterion(y_pred, y_batch.to(torch.long)).cpu().numpy()
                 for k in eval_res.keys():
+                    print("eval_res key:", k)
                     eval_res[k] = eval_res[k].reshape(1)
                 results.append(eval_res)
 
@@ -198,9 +203,16 @@ class Base_method(object):
                 torch.cuda.empty_cache()
         
         # post gather tensors
+        print("Before gathering tensors:")
+        for x in range(len(results)):
+            print(type(x), x.dtype, x.shape)
+
+        print("=======================")
+        
         print("Gathering tensors")
         results_all = {}
         for k in results[0].keys():
+            
             results_all[k] = np.concatenate([batch[k] for batch in results], axis=0)
 
         
