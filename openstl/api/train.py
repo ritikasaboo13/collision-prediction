@@ -366,7 +366,7 @@ class BaseExperiment(object):
          #                           metrics=metric_list, channel_names=channel_names, spatial_norm=spatial_norm)
        # results['metrics'] = np.array([eval_res['mae'], eval_res['mse']])
 
-        print("Here are my results", results)
+        #print("Here are my results", results)
 
         if self._rank == 0:
             #print_log(eval_log)
