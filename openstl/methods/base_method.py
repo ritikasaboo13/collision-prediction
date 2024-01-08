@@ -203,18 +203,13 @@ class Base_method(object):
                 torch.cuda.empty_cache()
         
         # post gather tensors
-        print("Before gathering tensors:")
-        print(len(results))
-        for x in results:
-            print(type(x), x.dtype)
-        print("=======================")
+        
         
         print("Gathering tensors")
         results_all = {}
         for k in results[0].keys():
-            
+            print("Key in results:", k)
             results_all[k] = np.concatenate([batch[k] for batch in results], axis=0)
-
         
         return results_all
 
