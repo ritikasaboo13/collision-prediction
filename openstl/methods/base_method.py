@@ -204,9 +204,9 @@ class Base_method(object):
         
         # post gather tensors
         print("Before gathering tensors:")
-        for x in range(results):
-            print(type(x), x.dtype, x.shape)
-
+        print(len(results))
+        for x in results:
+            print(type(x), x.dtype)
         print("=======================")
         
         print("Gathering tensors")
