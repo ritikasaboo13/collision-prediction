@@ -73,8 +73,12 @@ class SimVPSegment(Base_method):
             runner.call_hook('before_train_iter')
             
             with self.amp_autocast():
-                pred_y = self._predict(batch_x) 
-                loss = self.criterion(pred_y.permute(0, 2, 1, 3,4), batch_y.to(torch.long))
+                pred_y = self._predict(batch_x)
+                print("===== Within train_one_epoch of simvp method, shapes are as follows =====")
+                print("Batch x:", batch_x.shape, batch_x.dtype, type(batch_x))
+                print("Batch y:", batch_y.shape, batch_y.dtype, type(batch_y))
+                print("Pred y:", pred_y.shape, pred_y.dtype, type(pred_y))
+                loss = self.criterion(pred_y, batch_y.to(torch.long))
           
             if not self.dist:
                 losses_m.update(loss.item(), batch_x.size(0))
