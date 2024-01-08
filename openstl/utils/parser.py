@@ -63,18 +63,18 @@ def create_parser():
                         help='Whether to drop the last batch in the val data loading')
 
     # method parameters
-    parser.add_argument('--method', '-m', default='SimVP', type=str,
+    parser.add_argument('--method', '-m', default='SimVPSegment', type=str,
                         choices=['ConvLSTM', 'convlstm', 'CrevNet', 'crevnet', 'DMVFN', 'dmvfn', 'E3DLSTM', 'e3dlstm',
                                  'MAU', 'mau', 'MIM', 'mim', 'PhyDNet', 'phydnet', 'PredNet', 'prednet',
                                  'PredRNN', 'predrnn', 'PredRNNpp', 'predrnnpp', 'PredRNNv2', 'predrnnv2',
-                                 'SimVP', 'simvp', 'TAU', 'tau'],
+                                 'SimVP', 'simvp', 'TAU', 'tau', 'SimVPSegment'],
                         help='Name of video prediction method to train (default: "SimVP")')
-    parser.add_argument('--config_file', '-c', default='configs/mmnist/simvp/SimVP_gSTA.py', type=str,
+    parser.add_argument('--config_file', '-c', default='configs/movingphy/simvp/SimVP_gSTA.py', type=str,
                         help='Path to the default config file')
     parser.add_argument('--model_type', default=None, type=str,
-                        help='Name of model for SimVP (default: None)')
+                        help='Name of model for SimVP Segment (default: None)')
     parser.add_argument('--drop', type=float, default=0.0, help='Dropout rate(default: 0.)')
-    parser.add_argument('--drop_path', type=float, default=0.0, help='Drop path rate for SimVP (default: 0.)')
+    parser.add_argument('--drop_path', type=float, default=0.0, help='Drop path rate for SimVP Segment (default: 0.)')
     parser.add_argument('--overwrite', action='store_true', default=False,
                         help='Whether to allow overwriting the provided config file with args')
 
