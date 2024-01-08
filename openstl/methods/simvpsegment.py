@@ -82,7 +82,7 @@ class SimVPSegment(Base_method):
                 print("Reshaped pred_y:", y_pred.shape)
                 y_batch = batch_y.view(-1, batch_y.shape[-2], batch_y.shape[-1])
                 print("Reshaped batch_y:", y_batch.shape)
-                loss = self.criterion(pred_y, batch_y.to(torch.long))
+                loss = self.criterion(y_pred, y_batch.to(torch.long))
           
             if not self.dist:
                 losses_m.update(loss.item(), batch_x.size(0))
