@@ -34,20 +34,20 @@ class MovingPhysics(Dataset):
         self.videos = []
         if self.is_train:
           self.train_fdr_path = os.path.join(root, "train")
-          #self.unlabeled_fdr_path = os.path.join(root, "unlabeled")
           train_videos = os.listdir(self.train_fdr_path)
+          #self.unlabeled_fdr_path = os.path.join(root, "unlabeled")
           #unlabeled_videos = os.listdir(self.unlabeled_fdr_path)
           for v in train_videos:
-              self.videos.append(os.path.join(self.train_fdr_path, v))
+              if os.path.isdir(os.path.join(self.train_fdr_path, v)):
+                  self.videos.append(os.path.join(self.train_fdr_path, v))
           #for v in unlabeled_videos:
            # self.videos.append(os.path.join(self.unlabeled_fdr_path, v))
         else:
           self.val_fdr_path = os.path.join(root, "val")
           val_videos = os.listdir(self.val_fdr_path)
           for v in val_videos:
-            self.videos.append(os.path.join(self.val_fdr_path, v))
-              
-        print(self.videos)
+            if os.path.isdir(os.path.join(self.val_fdr_path, v)):
+                self.videos.append(os.path.join(self.val_fdr_path, v))
 
         for x in self.videos:
             try:
