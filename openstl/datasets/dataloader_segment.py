@@ -46,8 +46,9 @@ class MovingPhysics(Dataset):
           val_videos = os.listdir(self.val_fdr_path)
           for v in val_videos:
             self.videos.append(os.path.join(self.val_fdr_path, v))
-
-        self.videos.sort(key=lambda x: int(x.strip('_')[-1])) 
+              
+        print(self.videos)
+        self.videos.sort(key=lambda x: print(x); int(x.strip('_')[-1])) 
         self.mean = 0
         self.std = 1
 
