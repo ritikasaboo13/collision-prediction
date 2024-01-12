@@ -58,7 +58,7 @@ class MovingPhysics(Dataset):
                 print(f"Error processing: {x}")
                 raise
                 
-        self.videos.sort(key=lambda x: print(x); int(x.strip('_')[-1])) 
+        self.videos.sort(key=lambda x: int(x.strip('_')[-1])) 
         self.mean = 0
         self.std = 1
 
