@@ -48,6 +48,16 @@ class MovingPhysics(Dataset):
             self.videos.append(os.path.join(self.val_fdr_path, v))
               
         print(self.videos)
+
+        for x in self.videos:
+            try:
+        # This is the operation that's causing the error
+                key = int(x.strip('_')[-1])
+            except ValueError:
+        # Print the problematic value and re-raise the error
+                print(f"Error processing: {x}")
+                raise
+                
         self.videos.sort(key=lambda x: print(x); int(x.strip('_')[-1])) 
         self.mean = 0
         self.std = 1
