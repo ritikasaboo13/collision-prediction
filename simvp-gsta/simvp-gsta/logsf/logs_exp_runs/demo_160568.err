@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/scratch/rss9311/pytorch-env-dir/simvpOpenStl/tools/train.py", line 45, in <module>
+    exp = BaseExperiment(args)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/rss9311/pytorch-env-dir/simvpOpenStl/openstl/api/train.py", line 49, in __init__
+    self._preparation(dataloaders)
+  File "/scratch/rss9311/pytorch-env-dir/simvpOpenStl/openstl/api/train.py", line 142, in _preparation
+    self._load(name=self.args.resume_from)
+  File "/scratch/rss9311/pytorch-env-dir/simvpOpenStl/openstl/api/train.py", line 232, in _load
+    self._load_from_state_dict(checkpoint['state_dict'])
+                               ~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'state_dict'

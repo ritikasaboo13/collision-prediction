@@ -1,0 +1,475 @@
+/ext3/miniconda3/bin:/ext3/miniconda3/bin:/ext3/miniconda3/condabin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/scratch/rss9311/pytorch-env-dir/simvpOpenStl
+loading config from /scratch/rss9311/pytorch-env-dir/simvpOpenStl/configs/movingphy/simvp/SimVP_gSTA.py ...
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> training <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use non-distributed mode with GPU: cuda:0
+Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.11.6 | packaged by conda-forge | (main, Oct  3 2023, 10:40:35) [GCC 12.3.0]
+CUDA available: True
+CUDA_HOME: /usr/local/cuda
+NVCC: Build cuda_11.7.r11.7/compiler.31442593_0
+GPU 0,1: Tesla V100-SXM2-16GB
+GCC: gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+PyTorch: 2.0.1
+PyTorch compiling details: PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.7.3 (Git Hash 6dbeffbae1f23cbbeae17adb7b5b13f1f37c080e)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.7
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.5
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.7, CUDNN_VERSION=8.5.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wunused-local-typedefs -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_DISABLE_GPU_ASSERTS=ON, TORCH_VERSION=2.0.1, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
+
+TorchVision: 0.16.1+cu121
+OpenCV: 4.7.0
+openstl: 0.3.0
+------------------------------------------------------------
+
+
+device: 	cuda	
+dist: 	False	
+display_step: 	10	
+res_dir: 	work_dirs	
+ex_name: 	exp_0612_4_30am	
+use_gpu: 	True	
+fp16: 	False	
+torchscript: 	False	
+seed: 	42	
+diff_seed: 	False	
+fps: 	False	
+empty_cache: 	True	
+find_unused_parameters: 	False	
+broadcast_buffers: 	True	
+resume_from: 	work_dirs/exp_0612_4_30am/checkpoints/latest.pth	
+auto_resume: 	True	
+test: 	False	
+inference: 	False	
+deterministic: 	False	
+launcher: 	none	
+local_rank: 	0	
+port: 	29500	
+batch_size: 	4	
+val_batch_size: 	4	
+num_workers: 	4	
+data_root: 	/scratch/rss9311/squashfs-root/dataset	
+dataname: 	movingphy	
+pre_seq_length: 	11	
+aft_seq_length: 	11	
+total_length: 	22	
+use_augment: 	False	
+use_prefetcher: 	False	
+drop_last: 	False	
+method: 	simvp	
+config_file: 	/scratch/rss9311/pytorch-env-dir/simvpOpenStl/configs/movingphy/simvp/SimVP_gSTA.py	
+model_type: 	gSTA	
+drop: 	0.0	
+drop_path: 	0	
+overwrite: 	False	
+epoch: 	5	
+log_step: 	1	
+opt: 	adam	
+opt_eps: 	None	
+opt_betas: 	None	
+momentum: 	0.9	
+weight_decay: 	0.0	
+clip_grad: 	None	
+clip_mode: 	norm	
+early_stop_epoch: 	-1	
+no_display_method_info: 	False	
+sched: 	onecycle	
+lr: 	0.001	
+lr_k_decay: 	1.0	
+warmup_lr: 	1e-05	
+min_lr: 	1e-06	
+final_div_factor: 	10000.0	
+warmup_epoch: 	0	
+decay_epoch: 	100	
+decay_rate: 	0.1	
+filter_bias_and_bn: 	False	
+spatio_kernel_enc: 	3	
+spatio_kernel_dec: 	3	
+hid_S: 	64	
+hid_T: 	512	
+N_T: 	8	
+N_S: 	4	
+in_shape: 	[11, 3, 160, 240]	
+metrics: 	['mse', 'mae', 'ssim']	
+Model info:
+SimVP_Model(
+  (enc): Encoder(
+    (enc): Sequential(
+      (0): ConvSC(
+        (conv): BasicConv2d(
+          (conv): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (norm): GroupNorm(2, 64, eps=1e-05, affine=True)
+          (act): SiLU()
+        )
+      )
+      (1): ConvSC(
+        (conv): BasicConv2d(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+          (norm): GroupNorm(2, 64, eps=1e-05, affine=True)
+          (act): SiLU()
+        )
+      )
+      (2): ConvSC(
+        (conv): BasicConv2d(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (norm): GroupNorm(2, 64, eps=1e-05, affine=True)
+          (act): SiLU()
+        )
+      )
+      (3): ConvSC(
+        (conv): BasicConv2d(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+          (norm): GroupNorm(2, 64, eps=1e-05, affine=True)
+          (act): SiLU()
+        )
+      )
+    )
+  )
+  (dec): Decoder(
+    (dec): Sequential(
+      (0): ConvSC(
+        (conv): BasicConv2d(
+          (conv): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): PixelShuffle(upscale_factor=2)
+          )
+          (norm): GroupNorm(2, 64, eps=1e-05, affine=True)
+          (act): SiLU()
+        )
+      )
+      (1): ConvSC(
+        (conv): BasicConv2d(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (norm): GroupNorm(2, 64, eps=1e-05, affine=True)
+          (act): SiLU()
+        )
+      )
+      (2): ConvSC(
+        (conv): BasicConv2d(
+          (conv): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): PixelShuffle(upscale_factor=2)
+          )
+          (norm): GroupNorm(2, 64, eps=1e-05, affine=True)
+          (act): SiLU()
+        )
+      )
+      (3): ConvSC(
+        (conv): BasicConv2d(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (norm): GroupNorm(2, 64, eps=1e-05, affine=True)
+          (act): SiLU()
+        )
+      )
+    )
+    (readout): Conv2d(64, 3, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (hid): MidMetaNet(
+    (enc): Sequential(
+      (0): MetaBlock(
+        (block): GASubBlock(
+          (norm1): BatchNorm2d(704, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (attn): SpatialAttention(
+            (proj_1): Conv2d(704, 704, kernel_size=(1, 1), stride=(1, 1))
+            (activation): GELU(approximate='none')
+            (spatial_gating_unit): AttentionModule(
+              (conv0): Conv2d(704, 704, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=704)
+              (conv_spatial): Conv2d(704, 704, kernel_size=(7, 7), stride=(1, 1), padding=(9, 9), dilation=(3, 3), groups=704)
+              (conv1): Conv2d(704, 1408, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (proj_2): Conv2d(704, 704, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (drop_path): DropPath(drop_prob=0.010)
+          (norm2): BatchNorm2d(704, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): MixMlp(
+            (fc1): Conv2d(704, 5632, kernel_size=(1, 1), stride=(1, 1))
+            (dwconv): DWConv(
+              (dwconv): Conv2d(5632, 5632, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=5632)
+            )
+            (act): GELU(approximate='none')
+            (fc2): Conv2d(5632, 704, kernel_size=(1, 1), stride=(1, 1))
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (reduction): Conv2d(704, 512, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (1): MetaBlock(
+        (block): GASubBlock(
+          (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (attn): SpatialAttention(
+            (proj_1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+            (activation): GELU(approximate='none')
+            (spatial_gating_unit): AttentionModule(
+              (conv0): Conv2d(512, 512, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=512)
+              (conv_spatial): Conv2d(512, 512, kernel_size=(7, 7), stride=(1, 1), padding=(9, 9), dilation=(3, 3), groups=512)
+              (conv1): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (proj_2): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (drop_path): DropPath(drop_prob=0.009)
+          (norm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): MixMlp(
+            (fc1): Conv2d(512, 4096, kernel_size=(1, 1), stride=(1, 1))
+            (dwconv): DWConv(
+              (dwconv): Conv2d(4096, 4096, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4096)
+            )
+            (act): GELU(approximate='none')
+            (fc2): Conv2d(4096, 512, kernel_size=(1, 1), stride=(1, 1))
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (2): MetaBlock(
+        (block): GASubBlock(
+          (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (attn): SpatialAttention(
+            (proj_1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+            (activation): GELU(approximate='none')
+            (spatial_gating_unit): AttentionModule(
+              (conv0): Conv2d(512, 512, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=512)
+              (conv_spatial): Conv2d(512, 512, kernel_size=(7, 7), stride=(1, 1), padding=(9, 9), dilation=(3, 3), groups=512)
+              (conv1): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (proj_2): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (drop_path): DropPath(drop_prob=0.007)
+          (norm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): MixMlp(
+            (fc1): Conv2d(512, 4096, kernel_size=(1, 1), stride=(1, 1))
+            (dwconv): DWConv(
+              (dwconv): Conv2d(4096, 4096, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4096)
+            )
+            (act): GELU(approximate='none')
+            (fc2): Conv2d(4096, 512, kernel_size=(1, 1), stride=(1, 1))
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (3): MetaBlock(
+        (block): GASubBlock(
+          (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (attn): SpatialAttention(
+            (proj_1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+            (activation): GELU(approximate='none')
+            (spatial_gating_unit): AttentionModule(
+              (conv0): Conv2d(512, 512, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=512)
+              (conv_spatial): Conv2d(512, 512, kernel_size=(7, 7), stride=(1, 1), padding=(9, 9), dilation=(3, 3), groups=512)
+              (conv1): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (proj_2): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (drop_path): DropPath(drop_prob=0.006)
+          (norm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): MixMlp(
+            (fc1): Conv2d(512, 4096, kernel_size=(1, 1), stride=(1, 1))
+            (dwconv): DWConv(
+              (dwconv): Conv2d(4096, 4096, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4096)
+            )
+            (act): GELU(approximate='none')
+            (fc2): Conv2d(4096, 512, kernel_size=(1, 1), stride=(1, 1))
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (4): MetaBlock(
+        (block): GASubBlock(
+          (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (attn): SpatialAttention(
+            (proj_1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+            (activation): GELU(approximate='none')
+            (spatial_gating_unit): AttentionModule(
+              (conv0): Conv2d(512, 512, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=512)
+              (conv_spatial): Conv2d(512, 512, kernel_size=(7, 7), stride=(1, 1), padding=(9, 9), dilation=(3, 3), groups=512)
+              (conv1): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (proj_2): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (drop_path): DropPath(drop_prob=0.004)
+          (norm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): MixMlp(
+            (fc1): Conv2d(512, 4096, kernel_size=(1, 1), stride=(1, 1))
+            (dwconv): DWConv(
+              (dwconv): Conv2d(4096, 4096, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4096)
+            )
+            (act): GELU(approximate='none')
+            (fc2): Conv2d(4096, 512, kernel_size=(1, 1), stride=(1, 1))
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (5): MetaBlock(
+        (block): GASubBlock(
+          (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (attn): SpatialAttention(
+            (proj_1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+            (activation): GELU(approximate='none')
+            (spatial_gating_unit): AttentionModule(
+              (conv0): Conv2d(512, 512, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=512)
+              (conv_spatial): Conv2d(512, 512, kernel_size=(7, 7), stride=(1, 1), padding=(9, 9), dilation=(3, 3), groups=512)
+              (conv1): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (proj_2): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (drop_path): DropPath(drop_prob=0.003)
+          (norm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): MixMlp(
+            (fc1): Conv2d(512, 4096, kernel_size=(1, 1), stride=(1, 1))
+            (dwconv): DWConv(
+              (dwconv): Conv2d(4096, 4096, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4096)
+            )
+            (act): GELU(approximate='none')
+            (fc2): Conv2d(4096, 512, kernel_size=(1, 1), stride=(1, 1))
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (6): MetaBlock(
+        (block): GASubBlock(
+          (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (attn): SpatialAttention(
+            (proj_1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+            (activation): GELU(approximate='none')
+            (spatial_gating_unit): AttentionModule(
+              (conv0): Conv2d(512, 512, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=512)
+              (conv_spatial): Conv2d(512, 512, kernel_size=(7, 7), stride=(1, 1), padding=(9, 9), dilation=(3, 3), groups=512)
+              (conv1): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (proj_2): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (drop_path): DropPath(drop_prob=0.001)
+          (norm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): MixMlp(
+            (fc1): Conv2d(512, 4096, kernel_size=(1, 1), stride=(1, 1))
+            (dwconv): DWConv(
+              (dwconv): Conv2d(4096, 4096, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4096)
+            )
+            (act): GELU(approximate='none')
+            (fc2): Conv2d(4096, 512, kernel_size=(1, 1), stride=(1, 1))
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (7): MetaBlock(
+        (block): GASubBlock(
+          (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (attn): SpatialAttention(
+            (proj_1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+            (activation): GELU(approximate='none')
+            (spatial_gating_unit): AttentionModule(
+              (conv0): Conv2d(512, 512, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=512)
+              (conv_spatial): Conv2d(512, 512, kernel_size=(7, 7), stride=(1, 1), padding=(9, 9), dilation=(3, 3), groups=512)
+              (conv1): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (proj_2): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (drop_path): Identity()
+          (norm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): MixMlp(
+            (fc1): Conv2d(512, 4096, kernel_size=(1, 1), stride=(1, 1))
+            (dwconv): DWConv(
+              (dwconv): Conv2d(4096, 4096, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=4096)
+            )
+            (act): GELU(approximate='none')
+            (fc2): Conv2d(4096, 512, kernel_size=(1, 1), stride=(1, 1))
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (reduction): Conv2d(512, 704, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+  )
+)
+| module                           | #parameters or shape   | #flops     |
+|:---------------------------------|:-----------------------|:-----------|
+| model                            | 48.568M                | 0.164T     |
+|  enc.enc                         |  0.113M                |  9.7G      |
+|   enc.enc.0.conv                 |   1.92K                |   0.865G   |
+|    enc.enc.0.conv.conv           |    1.792K              |    0.73G   |
+|    enc.enc.0.conv.norm           |    0.128K              |    0.135G  |
+|   enc.enc.1.conv                 |   37.056K              |   3.927G   |
+|    enc.enc.1.conv.conv           |    36.928K             |    3.893G  |
+|    enc.enc.1.conv.norm           |    0.128K              |    33.792M |
+|   enc.enc.2.conv                 |   37.056K              |   3.927G   |
+|    enc.enc.2.conv.conv           |    36.928K             |    3.893G  |
+|    enc.enc.2.conv.norm           |    0.128K              |    33.792M |
+|   enc.enc.3.conv                 |   37.056K              |   0.982G   |
+|    enc.enc.3.conv.conv           |    36.928K             |    0.973G  |
+|    enc.enc.3.conv.norm           |    0.128K              |    8.448M  |
+|  dec                             |  0.37M                 |  39.347G   |
+|   dec.dec                        |   0.37M                |   39.266G  |
+|    dec.dec.0.conv                |    0.148M              |    3.927G  |
+|    dec.dec.1.conv                |    37.056K             |    3.927G  |
+|    dec.dec.2.conv                |    0.148M              |    15.707G |
+|    dec.dec.3.conv                |    37.056K             |    15.707G |
+|   dec.readout                    |   0.195K               |   81.101M  |
+|    dec.readout.weight            |    (3, 64, 1, 1)       |            |
+|    dec.readout.bias              |    (3,)                |            |
+|  hid.enc                         |  48.085M               |  0.115T    |
+|   hid.enc.0                      |   10.396M              |   24.908G  |
+|    hid.enc.0.block               |    10.036M             |    24.043G |
+|    hid.enc.0.reduction           |    0.361M              |    0.865G  |
+|   hid.enc.1.block                |   5.332M               |   12.767G  |
+|    hid.enc.1.block.layer_scale_1 |    (512,)              |            |
+|    hid.enc.1.block.layer_scale_2 |    (512,)              |            |
+|    hid.enc.1.block.norm1         |    1.024K              |    2.458M  |
+|    hid.enc.1.block.attn          |    1.09M               |    2.608G  |
+|    hid.enc.1.block.norm2         |    1.024K              |    2.458M  |
+|    hid.enc.1.block.mlp           |    4.24M               |    10.155G |
+|   hid.enc.2.block                |   5.332M               |   12.767G  |
+|    hid.enc.2.block.layer_scale_1 |    (512,)              |            |
+|    hid.enc.2.block.layer_scale_2 |    (512,)              |            |
+|    hid.enc.2.block.norm1         |    1.024K              |    2.458M  |
+|    hid.enc.2.block.attn          |    1.09M               |    2.608G  |
+|    hid.enc.2.block.norm2         |    1.024K              |    2.458M  |
+|    hid.enc.2.block.mlp           |    4.24M               |    10.155G |
+|   hid.enc.3.block                |   5.332M               |   12.767G  |
+|    hid.enc.3.block.layer_scale_1 |    (512,)              |            |
+|    hid.enc.3.block.layer_scale_2 |    (512,)              |            |
+|    hid.enc.3.block.norm1         |    1.024K              |    2.458M  |
+|    hid.enc.3.block.attn          |    1.09M               |    2.608G  |
+|    hid.enc.3.block.norm2         |    1.024K              |    2.458M  |
+|    hid.enc.3.block.mlp           |    4.24M               |    10.155G |
+|   hid.enc.4.block                |   5.332M               |   12.767G  |
+|    hid.enc.4.block.layer_scale_1 |    (512,)              |            |
+|    hid.enc.4.block.layer_scale_2 |    (512,)              |            |
+|    hid.enc.4.block.norm1         |    1.024K              |    2.458M  |
+|    hid.enc.4.block.attn          |    1.09M               |    2.608G  |
+|    hid.enc.4.block.norm2         |    1.024K              |    2.458M  |
+|    hid.enc.4.block.mlp           |    4.24M               |    10.155G |
+|   hid.enc.5.block                |   5.332M               |   12.767G  |
+|    hid.enc.5.block.layer_scale_1 |    (512,)              |            |
+|    hid.enc.5.block.layer_scale_2 |    (512,)              |            |
+|    hid.enc.5.block.norm1         |    1.024K              |    2.458M  |
+|    hid.enc.5.block.attn          |    1.09M               |    2.608G  |
+|    hid.enc.5.block.norm2         |    1.024K              |    2.458M  |
+|    hid.enc.5.block.mlp           |    4.24M               |    10.155G |
+|   hid.enc.6.block                |   5.332M               |   12.767G  |
+|    hid.enc.6.block.layer_scale_1 |    (512,)              |            |
+|    hid.enc.6.block.layer_scale_2 |    (512,)              |            |
+|    hid.enc.6.block.norm1         |    1.024K              |    2.458M  |
+|    hid.enc.6.block.attn          |    1.09M               |    2.608G  |
+|    hid.enc.6.block.norm2         |    1.024K              |    2.458M  |
+|    hid.enc.6.block.mlp           |    4.24M               |    10.155G |
+|   hid.enc.7                      |   5.694M               |   13.632G  |
+|    hid.enc.7.block               |    5.332M              |    12.767G |
+|    hid.enc.7.reduction           |    0.361M              |    0.865G  |
+--------------------------------------------------------------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> testing  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[                                                  ] 0/250, elapsed: 0s, ETA:[                                 ] 1/250, 0.3 task/s, elapsed: 3s, ETA:   757s[                                 ] 2/250, 0.6 task/s, elapsed: 3s, ETA:   399s[                                 ] 3/250, 0.9 task/s, elapsed: 3s, ETA:   280s[                                 ] 4/250, 1.1 task/s, elapsed: 4s, ETA:   219s[                                 ] 5/250, 1.3 task/s, elapsed: 4s, ETA:   183s[                                 ] 6/250, 1.5 task/s, elapsed: 4s, ETA:   159s[                                 ] 7/250, 1.7 task/s, elapsed: 4s, ETA:   142s[>                                ] 8/250, 1.9 task/s, elapsed: 4s, ETA:   129s[>                                ] 9/250, 2.0 task/s, elapsed: 4s, ETA:   119s[>                               ] 10/250, 2.2 task/s, elapsed: 5s, ETA:   111s[>                               ] 11/250, 2.3 task/s, elapsed: 5s, ETA:   104s[>                               ] 12/250, 2.4 task/s, elapsed: 5s, ETA:    98s[>                               ] 13/250, 2.5 task/s, elapsed: 5s, ETA:    94s[>                               ] 14/250, 2.6 task/s, elapsed: 5s, ETA:    89s[>                               ] 15/250, 2.7 task/s, elapsed: 5s, ETA:    86s[>>                              ] 16/250, 2.8 task/s, elapsed: 6s, ETA:    83s[>>                              ] 17/250, 2.9 task/s, elapsed: 6s, ETA:    80s[>>                              ] 18/250, 3.0 task/s, elapsed: 6s, ETA:    77s[>>                              ] 19/250, 3.1 task/s, elapsed: 6s, ETA:    75s[>>                              ] 20/250, 3.2 task/s, elapsed: 6s, ETA:    73s[>>                              ] 21/250, 3.2 task/s, elapsed: 7s, ETA:    71s[>>                              ] 22/250, 3.3 task/s, elapsed: 7s, ETA:    69s[>>                              ] 23/250, 3.4 task/s, elapsed: 7s, ETA:    68s[>>>                             ] 24/250, 3.4 task/s, elapsed: 7s, ETA:    66s[>>>                             ] 25/250, 3.5 task/s, elapsed: 7s, ETA:    65s[>>>                             ] 26/250, 3.5 task/s, elapsed: 7s, ETA:    64s[>>>                             ] 27/250, 3.6 task/s, elapsed: 8s, ETA:    62s[>>>                             ] 28/250, 3.6 task/s, elapsed: 8s, ETA:    61s[>>>                             ] 29/250, 3.7 task/s, elapsed: 8s, ETA:    60s[>>>                             ] 30/250, 3.7 task/s, elapsed: 8s, ETA:    59s[>>>                             ] 31/250, 3.8 task/s, elapsed: 8s, ETA:    58s[>>>>                            ] 32/250, 3.8 task/s, elapsed: 8s, ETA:    57s[>>>>                            ] 33/250, 3.8 task/s, elapsed: 9s, ETA:    57s[>>>>                            ] 34/250, 3.9 task/s, elapsed: 9s, ETA:    56s[>>>>                            ] 35/250, 3.9 task/s, elapsed: 9s, ETA:    55s[>>>>                            ] 36/250, 3.9 task/s, elapsed: 9s, ETA:    54s[>>>>                            ] 37/250, 4.0 task/s, elapsed: 9s, ETA:    54s[>>>>                            ] 38/250, 4.0 task/s, elapsed: 9s, ETA:    53s[>>>>                           ] 39/250, 4.0 task/s, elapsed: 10s, ETA:    52s[>>>>                           ] 40/250, 4.1 task/s, elapsed: 10s, ETA:    52s[>>>>>                          ] 41/250, 4.1 task/s, elapsed: 10s, ETA:    51s[>>>>>                          ] 42/250, 4.1 task/s, elapsed: 10s, ETA:    50s[>>>>>                          ] 43/250, 4.1 task/s, elapsed: 10s, ETA:    50s[>>>>>                          ] 44/250, 4.2 task/s, elapsed: 11s, ETA:    49s[>>>>>                          ] 45/250, 4.2 task/s, elapsed: 11s, ETA:    49s[>>>>>                          ] 46/250, 4.2 task/s, elapsed: 11s, ETA:    48s[>>>>>                          ] 47/250, 4.2 task/s, elapsed: 11s, ETA:    48s[>>>>>                          ] 48/250, 4.3 task/s, elapsed: 11s, ETA:    47s[>>>>>>                         ] 49/250, 4.3 task/s, elapsed: 11s, ETA:    47s[>>>>>>                         ] 50/250, 4.3 task/s, elapsed: 12s, ETA:    46s[>>>>>>                         ] 51/250, 4.3 task/s, elapsed: 12s, ETA:    46s[>>>>>>                         ] 52/250, 4.4 task/s, elapsed: 12s, ETA:    45s[>>>>>>                         ] 53/250, 4.4 task/s, elapsed: 12s, ETA:    45s[>>>>>>                         ] 54/250, 4.4 task/s, elapsed: 12s, ETA:    45s[>>>>>>                         ] 55/250, 4.4 task/s, elapsed: 12s, ETA:    44s[>>>>>>                         ] 56/250, 4.4 task/s, elapsed: 13s, ETA:    44s[>>>>>>>                        ] 57/250, 4.4 task/s, elapsed: 13s, ETA:    43s[>>>>>>>                        ] 58/250, 4.5 task/s, elapsed: 13s, ETA:    43s[>>>>>>>                        ] 59/250, 4.5 task/s, elapsed: 13s, ETA:    43s[>>>>>>>                        ] 60/250, 4.5 task/s, elapsed: 13s, ETA:    42s[>>>>>>>                        ] 61/250, 4.5 task/s, elapsed: 14s, ETA:    42s[>>>>>>>                        ] 62/250, 4.5 task/s, elapsed: 14s, ETA:    41s[>>>>>>>                        ] 63/250, 4.5 task/s, elapsed: 14s, ETA:    41s[>>>>>>>                        ] 64/250, 4.6 task/s, elapsed: 14s, ETA:    41s[>>>>>>>>                       ] 65/250, 4.6 task/s, elapsed: 14s, ETA:    40s[>>>>>>>>                       ] 66/250, 4.6 task/s, elapsed: 14s, ETA:    40s[>>>>>>>>                       ] 67/250, 4.6 task/s, elapsed: 15s, ETA:    40s[>>>>>>>>                       ] 68/250, 4.6 task/s, elapsed: 15s, ETA:    39s[>>>>>>>>                       ] 69/250, 4.6 task/s, elapsed: 15s, ETA:    39s[>>>>>>>>                       ] 70/250, 4.6 task/s, elapsed: 15s, ETA:    39s[>>>>>>>>                       ] 71/250, 4.6 task/s, elapsed: 15s, ETA:    39s[>>>>>>>>                       ] 72/250, 4.7 task/s, elapsed: 15s, ETA:    38s[>>>>>>>>>                      ] 73/250, 4.6 task/s, elapsed: 16s, ETA:    38s[>>>>>>>>>                      ] 74/250, 4.6 task/s, elapsed: 16s, ETA:    38s[>>>>>>>>>                      ] 75/250, 4.6 task/s, elapsed: 16s, ETA:    38s[>>>>>>>>>                      ] 76/250, 4.6 task/s, elapsed: 16s, ETA:    38s[>>>>>>>>>                      ] 77/250, 4.6 task/s, elapsed: 17s, ETA:    38s[>>>>>>>>>                      ] 78/250, 4.6 task/s, elapsed: 17s, ETA:    37s[>>>>>>>>>                      ] 79/250, 4.6 task/s, elapsed: 17s, ETA:    37s[>>>>>>>>>                      ] 80/250, 4.6 task/s, elapsed: 17s, ETA:    37s[>>>>>>>>>>                     ] 81/250, 4.6 task/s, elapsed: 18s, ETA:    37s[>>>>>>>>>>                     ] 82/250, 4.6 task/s, elapsed: 18s, ETA:    37s[>>>>>>>>>>                     ] 83/250, 4.6 task/s, elapsed: 18s, ETA:    36s[>>>>>>>>>>                     ] 84/250, 4.6 task/s, elapsed: 18s, ETA:    36s[>>>>>>>>>>                     ] 85/250, 4.5 task/s, elapsed: 19s, ETA:    37s[>>>>>>>>>>                     ] 86/250, 4.5 task/s, elapsed: 19s, ETA:    36s[>>>>>>>>>>                     ] 87/250, 4.5 task/s, elapsed: 19s, ETA:    36s[>>>>>>>>>>                     ] 88/250, 4.5 task/s, elapsed: 20s, ETA:    36s[>>>>>>>>>>>                    ] 89/250, 4.5 task/s, elapsed: 20s, ETA:    36s[>>>>>>>>>>>                    ] 90/250, 4.5 task/s, elapsed: 20s, ETA:    36s[>>>>>>>>>>>                    ] 91/250, 4.5 task/s, elapsed: 20s, ETA:    35s[>>>>>>>>>>>                    ] 92/250, 4.5 task/s, elapsed: 20s, ETA:    35s[>>>>>>>>>>>                    ] 93/250, 4.5 task/s, elapsed: 21s, ETA:    35s[>>>>>>>>>>>                    ] 94/250, 4.5 task/s, elapsed: 21s, ETA:    35s[>>>>>>>>>>>                    ] 95/250, 4.5 task/s, elapsed: 21s, ETA:    35s[>>>>>>>>>>>                    ] 96/250, 4.5 task/s, elapsed: 21s, ETA:    34s[>>>>>>>>>>>>                   ] 97/250, 4.4 task/s, elapsed: 22s, ETA:    34s[>>>>>>>>>>>>                   ] 98/250, 4.4 task/s, elapsed: 22s, ETA:    34s[>>>>>>>>>>>>                   ] 99/250, 4.4 task/s, elapsed: 22s, ETA:    34s[>>>>>>>>>>>>                  ] 100/250, 4.4 task/s, elapsed: 22s, ETA:    34s[>>>>>>>>>>>>                  ] 101/250, 4.4 task/s, elapsed: 23s, ETA:    34s[>>>>>>>>>>>>                  ] 102/250, 4.5 task/s, elapsed: 23s, ETA:    33s[>>>>>>>>>>>>                  ] 103/250, 4.5 task/s, elapsed: 23s, ETA:    33s[>>>>>>>>>>>>                  ] 104/250, 4.5 task/s, elapsed: 23s, ETA:    33s[>>>>>>>>>>>>                  ] 105/250, 4.5 task/s, elapsed: 23s, ETA:    32s[>>>>>>>>>>>>                  ] 106/250, 4.5 task/s, elapsed: 24s, ETA:    32s[>>>>>>>>>>>>                  ] 107/250, 4.5 task/s, elapsed: 24s, ETA:    32s[>>>>>>>>>>>>                  ] 108/250, 4.5 task/s, elapsed: 24s, ETA:    31s[>>>>>>>>>>>>>                 ] 109/250, 4.5 task/s, elapsed: 24s, ETA:    31s[>>>>>>>>>>>>>                 ] 110/250, 4.5 task/s, elapsed: 24s, ETA:    31s[>>>>>>>>>>>>>                 ] 111/250, 4.5 task/s, elapsed: 24s, ETA:    31s[>>>>>>>>>>>>>                 ] 112/250, 4.5 task/s, elapsed: 25s, ETA:    30s[>>>>>>>>>>>>>                 ] 113/250, 4.6 task/s, elapsed: 25s, ETA:    30s[>>>>>>>>>>>>>                 ] 114/250, 4.6 task/s, elapsed: 25s, ETA:    30s[>>>>>>>>>>>>>                 ] 115/250, 4.6 task/s, elapsed: 25s, ETA:    30s[>>>>>>>>>>>>>                 ] 116/250, 4.6 task/s, elapsed: 25s, ETA:    29s[>>>>>>>>>>>>>>                ] 117/250, 4.6 task/s, elapsed: 26s, ETA:    29s[>>>>>>>>>>>>>>                ] 118/250, 4.6 task/s, elapsed: 26s, ETA:    29s[>>>>>>>>>>>>>>                ] 119/250, 4.6 task/s, elapsed: 26s, ETA:    28s[>>>>>>>>>>>>>>                ] 120/250, 4.6 task/s, elapsed: 26s, ETA:    28s[>>>>>>>>>>>>>>                ] 121/250, 4.6 task/s, elapsed: 26s, ETA:    28s[>>>>>>>>>>>>>>                ] 122/250, 4.6 task/s, elapsed: 26s, ETA:    28s[>>>>>>>>>>>>>>                ] 123/250, 4.6 task/s, elapsed: 27s, ETA:    27s[>>>>>>>>>>>>>>                ] 124/250, 4.6 task/s, elapsed: 27s, ETA:    27s[>>>>>>>>>>>>>>>               ] 125/250, 4.6 task/s, elapsed: 27s, ETA:    27s[>>>>>>>>>>>>>>>               ] 126/250, 4.7 task/s, elapsed: 27s, ETA:    27s[>>>>>>>>>>>>>>>               ] 127/250, 4.7 task/s, elapsed: 27s, ETA:    26s[>>>>>>>>>>>>>>>               ] 128/250, 4.7 task/s, elapsed: 27s, ETA:    26s[>>>>>>>>>>>>>>>               ] 129/250, 4.7 task/s, elapsed: 28s, ETA:    26s[>>>>>>>>>>>>>>>               ] 130/250, 4.7 task/s, elapsed: 28s, ETA:    26s[>>>>>>>>>>>>>>>               ] 131/250, 4.7 task/s, elapsed: 28s, ETA:    25s[>>>>>>>>>>>>>>>               ] 132/250, 4.7 task/s, elapsed: 28s, ETA:    25s[>>>>>>>>>>>>>>>               ] 133/250, 4.7 task/s, elapsed: 28s, ETA:    25s[>>>>>>>>>>>>>>>>              ] 134/250, 4.7 task/s, elapsed: 28s, ETA:    25s[>>>>>>>>>>>>>>>>              ] 135/250, 4.7 task/s, elapsed: 29s, ETA:    24s[>>>>>>>>>>>>>>>>              ] 136/250, 4.7 task/s, elapsed: 29s, ETA:    24s[>>>>>>>>>>>>>>>>              ] 137/250, 4.7 task/s, elapsed: 29s, ETA:    24s[>>>>>>>>>>>>>>>>              ] 138/250, 4.7 task/s, elapsed: 29s, ETA:    24s[>>>>>>>>>>>>>>>>              ] 139/250, 4.7 task/s, elapsed: 29s, ETA:    23s[>>>>>>>>>>>>>>>>              ] 140/250, 4.7 task/s, elapsed: 30s, ETA:    23s[>>>>>>>>>>>>>>>>              ] 141/250, 4.7 task/s, elapsed: 30s, ETA:    23s[>>>>>>>>>>>>>>>>>             ] 142/250, 4.8 task/s, elapsed: 30s, ETA:    23s[>>>>>>>>>>>>>>>>>             ] 143/250, 4.8 task/s, elapsed: 30s, ETA:    22s[>>>>>>>>>>>>>>>>>             ] 144/250, 4.8 task/s, elapsed: 30s, ETA:    22s[>>>>>>>>>>>>>>>>>             ] 145/250, 4.8 task/s, elapsed: 30s, ETA:    22s[>>>>>>>>>>>>>>>>>             ] 146/250, 4.8 task/s, elapsed: 31s, ETA:    22s[>>>>>>>>>>>>>>>>>             ] 147/250, 4.8 task/s, elapsed: 31s, ETA:    22s[>>>>>>>>>>>>>>>>>             ] 148/250, 4.8 task/s, elapsed: 31s, ETA:    21s[>>>>>>>>>>>>>>>>>             ] 149/250, 4.8 task/s, elapsed: 31s, ETA:    21s[>>>>>>>>>>>>>>>>>>            ] 150/250, 4.8 task/s, elapsed: 31s, ETA:    21s[>>>>>>>>>>>>>>>>>>            ] 151/250, 4.8 task/s, elapsed: 31s, ETA:    21s[>>>>>>>>>>>>>>>>>>            ] 152/250, 4.8 task/s, elapsed: 32s, ETA:    20s[>>>>>>>>>>>>>>>>>>            ] 153/250, 4.8 task/s, elapsed: 32s, ETA:    20s[>>>>>>>>>>>>>>>>>>            ] 154/250, 4.8 task/s, elapsed: 32s, ETA:    20s[>>>>>>>>>>>>>>>>>>            ] 155/250, 4.8 task/s, elapsed: 32s, ETA:    20s[>>>>>>>>>>>>>>>>>>            ] 156/250, 4.8 task/s, elapsed: 32s, ETA:    19s[>>>>>>>>>>>>>>>>>>            ] 157/250, 4.8 task/s, elapsed: 33s, ETA:    19s[>>>>>>>>>>>>>>>>>>            ] 158/250, 4.8 task/s, elapsed: 33s, ETA:    19s[>>>>>>>>>>>>>>>>>>>           ] 159/250, 4.8 task/s, elapsed: 33s, ETA:    19s[>>>>>>>>>>>>>>>>>>>           ] 160/250, 4.8 task/s, elapsed: 33s, ETA:    19s[>>>>>>>>>>>>>>>>>>>           ] 161/250, 4.8 task/s, elapsed: 33s, ETA:    18s[>>>>>>>>>>>>>>>>>>>           ] 162/250, 4.9 task/s, elapsed: 33s, ETA:    18s[>>>>>>>>>>>>>>>>>>>           ] 163/250, 4.9 task/s, elapsed: 34s, ETA:    18s[>>>>>>>>>>>>>>>>>>>           ] 164/250, 4.9 task/s, elapsed: 34s, ETA:    18s[>>>>>>>>>>>>>>>>>>>           ] 165/250, 4.9 task/s, elapsed: 34s, ETA:    17s[>>>>>>>>>>>>>>>>>>>           ] 166/250, 4.9 task/s, elapsed: 34s, ETA:    17s[>>>>>>>>>>>>>>>>>>>>          ] 167/250, 4.9 task/s, elapsed: 34s, ETA:    17s[>>>>>>>>>>>>>>>>>>>>          ] 168/250, 4.9 task/s, elapsed: 34s, ETA:    17s[>>>>>>>>>>>>>>>>>>>>          ] 169/250, 4.9 task/s, elapsed: 35s, ETA:    17s[>>>>>>>>>>>>>>>>>>>>          ] 170/250, 4.9 task/s, elapsed: 35s, ETA:    16s[>>>>>>>>>>>>>>>>>>>>          ] 171/250, 4.9 task/s, elapsed: 35s, ETA:    16s[>>>>>>>>>>>>>>>>>>>>          ] 172/250, 4.9 task/s, elapsed: 35s, ETA:    16s[>>>>>>>>>>>>>>>>>>>>          ] 173/250, 4.9 task/s, elapsed: 35s, ETA:    16s[>>>>>>>>>>>>>>>>>>>>          ] 174/250, 4.9 task/s, elapsed: 35s, ETA:    16s[>>>>>>>>>>>>>>>>>>>>>         ] 175/250, 4.9 task/s, elapsed: 36s, ETA:    15s[>>>>>>>>>>>>>>>>>>>>>         ] 176/250, 4.9 task/s, elapsed: 36s, ETA:    15s[>>>>>>>>>>>>>>>>>>>>>         ] 177/250, 4.9 task/s, elapsed: 36s, ETA:    15s[>>>>>>>>>>>>>>>>>>>>>         ] 178/250, 4.9 task/s, elapsed: 36s, ETA:    15s[>>>>>>>>>>>>>>>>>>>>>         ] 179/250, 4.9 task/s, elapsed: 36s, ETA:    14s[>>>>>>>>>>>>>>>>>>>>>         ] 180/250, 4.9 task/s, elapsed: 37s, ETA:    14s[>>>>>>>>>>>>>>>>>>>>>         ] 181/250, 4.9 task/s, elapsed: 37s, ETA:    14s[>>>>>>>>>>>>>>>>>>>>>         ] 182/250, 4.9 task/s, elapsed: 37s, ETA:    14s[>>>>>>>>>>>>>>>>>>>>>         ] 183/250, 4.9 task/s, elapsed: 37s, ETA:    14s[>>>>>>>>>>>>>>>>>>>>>>        ] 184/250, 4.9 task/s, elapsed: 38s, ETA:    13s[>>>>>>>>>>>>>>>>>>>>>>        ] 185/250, 4.9 task/s, elapsed: 38s, ETA:    13s[>>>>>>>>>>>>>>>>>>>>>>        ] 186/250, 4.9 task/s, elapsed: 38s, ETA:    13s[>>>>>>>>>>>>>>>>>>>>>>        ] 187/250, 4.9 task/s, elapsed: 38s, ETA:    13s[>>>>>>>>>>>>>>>>>>>>>>        ] 188/250, 4.9 task/s, elapsed: 39s, ETA:    13s[>>>>>>>>>>>>>>>>>>>>>>        ] 189/250, 4.9 task/s, elapsed: 39s, ETA:    13s[>>>>>>>>>>>>>>>>>>>>>>        ] 190/250, 4.9 task/s, elapsed: 39s, ETA:    12s[>>>>>>>>>>>>>>>>>>>>>>        ] 191/250, 4.9 task/s, elapsed: 39s, ETA:    12s[>>>>>>>>>>>>>>>>>>>>>>>       ] 192/250, 4.9 task/s, elapsed: 39s, ETA:    12s[>>>>>>>>>>>>>>>>>>>>>>>       ] 193/250, 4.9 task/s, elapsed: 40s, ETA:    12s[>>>>>>>>>>>>>>>>>>>>>>>       ] 194/250, 4.9 task/s, elapsed: 40s, ETA:    11s[>>>>>>>>>>>>>>>>>>>>>>>       ] 195/250, 4.9 task/s, elapsed: 40s, ETA:    11s[>>>>>>>>>>>>>>>>>>>>>>>       ] 196/250, 4.9 task/s, elapsed: 40s, ETA:    11s[>>>>>>>>>>>>>>>>>>>>>>>       ] 197/250, 4.9 task/s, elapsed: 40s, ETA:    11s[>>>>>>>>>>>>>>>>>>>>>>>       ] 198/250, 4.9 task/s, elapsed: 41s, ETA:    11s[>>>>>>>>>>>>>>>>>>>>>>>       ] 199/250, 4.9 task/s, elapsed: 41s, ETA:    10s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 200/250, 4.9 task/s, elapsed: 41s, ETA:    10s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 201/250, 4.9 task/s, elapsed: 41s, ETA:    10s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 202/250, 4.9 task/s, elapsed: 41s, ETA:    10s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 203/250, 4.9 task/s, elapsed: 41s, ETA:    10s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 204/250, 4.9 task/s, elapsed: 42s, ETA:     9s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 205/250, 4.9 task/s, elapsed: 42s, ETA:     9s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 206/250, 4.9 task/s, elapsed: 42s, ETA:     9s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 207/250, 4.9 task/s, elapsed: 42s, ETA:     9s[>>>>>>>>>>>>>>>>>>>>>>>>      ] 208/250, 4.9 task/s, elapsed: 42s, ETA:     9s[>>>>>>>>>>>>>>>>>>>>>>>>>     ] 209/250, 4.9 task/s, elapsed: 42s, ETA:     8s[>>>>>>>>>>>>>>>>>>>>>>>>>     ] 210/250, 4.9 task/s, elapsed: 43s, ETA:     8s[>>>>>>>>>>>>>>>>>>>>>>>>>     ] 211/250, 4.9 task/s, elapsed: 43s, ETA:     8s[>>>>>>>>>>>>>>>>>>>>>>>>>     ] 212/250, 4.9 task/s, elapsed: 43s, ETA:     8s[>>>>>>>>>>>>>>>>>>>>>>>>>     ] 213/250, 4.9 task/s, elapsed: 43s, ETA:     7s[>>>>>>>>>>>>>>>>>>>>>>>>>     ] 214/250, 4.9 task/s, elapsed: 43s, ETA:     7s[>>>>>>>>>>>>>>>>>>>>>>>>>     ] 215/250, 4.9 task/s, elapsed: 44s, ETA:     7s[>>>>>>>>>>>>>>>>>>>>>>>>>     ] 216/250, 4.9 task/s, elapsed: 44s, ETA:     7s[>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 217/250, 4.9 task/s, elapsed: 44s, ETA:     7s[>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 218/250, 5.0 task/s, elapsed: 44s, ETA:     6s[>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 219/250, 5.0 task/s, elapsed: 44s, ETA:     6s[>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 220/250, 5.0 task/s, elapsed: 44s, ETA:     6s[>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 221/250, 5.0 task/s, elapsed: 45s, ETA:     6s[>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 222/250, 5.0 task/s, elapsed: 45s, ETA:     6s[>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 223/250, 5.0 task/s, elapsed: 45s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 224/250, 5.0 task/s, elapsed: 45s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 225/250, 5.0 task/s, elapsed: 45s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 226/250, 5.0 task/s, elapsed: 45s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 227/250, 5.0 task/s, elapsed: 46s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 228/250, 5.0 task/s, elapsed: 46s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 229/250, 5.0 task/s, elapsed: 46s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 230/250, 5.0 task/s, elapsed: 46s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 231/250, 5.0 task/s, elapsed: 46s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 232/250, 5.0 task/s, elapsed: 46s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 233/250, 5.0 task/s, elapsed: 47s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 234/250, 5.0 task/s, elapsed: 47s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 235/250, 5.0 task/s, elapsed: 47s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 236/250, 5.0 task/s, elapsed: 47s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 237/250, 5.0 task/s, elapsed: 47s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 238/250, 5.0 task/s, elapsed: 48s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 239/250, 5.0 task/s, elapsed: 48s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 240/250, 5.0 task/s, elapsed: 48s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 241/250, 5.0 task/s, elapsed: 48s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 242/250, 5.0 task/s, elapsed: 48s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 243/250, 5.0 task/s, elapsed: 48s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 244/250, 5.0 task/s, elapsed: 49s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 245/250, 5.0 task/s, elapsed: 49s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 246/250, 5.0 task/s, elapsed: 49s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 247/250, 5.0 task/s, elapsed: 49s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 248/250, 5.0 task/s, elapsed: 49s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 249/250, 5.0 task/s, elapsed: 49s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 250/250, 5.0 task/s, elapsed: 50s, ETA:     0sReached here!!!!!!!!!!
+mse:126.60128784179688, mae:1149.041748046875, ssim:0.9703886393362826
+COPY DATA!!!!
+COPY DATA!!!!
+COPY DATA!!!!
+COPY DATA!!!!
+In experiment, test complete
