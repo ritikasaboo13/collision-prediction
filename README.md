@@ -1,4 +1,4 @@
-# Future Frame Prediction
+# Collision Prediction
 
 ## Overview
 
@@ -28,4 +28,4 @@ U-Net is a convolutional neural network that has been adapted for video frame se
 To run the models in this repository, you'll need Python and the required dependencies. You can install the dependencies using the following command:
 
 ```sh
-pip install -r requirements.txt 
+pip install -r simvp-gsta/requirements.txt 
